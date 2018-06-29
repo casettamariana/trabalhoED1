@@ -1,9 +1,8 @@
-#include <stdio.h>
-#include <conio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <locale.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<locale.h>
+
+setlocale(LC_ALL, "Portuguese");
 
 struct cadCliente {
    char codigo[9];
@@ -12,23 +11,23 @@ struct cadCliente {
    char telefone[20];
    char status;
    } Cliente;
-   
+
 struct cadFornecedor {
    int  codigo;
    char documento[20];
    char nome[100];
    char telefone[20];
    char status;
-   } Fornecedor;   
-   
+   } Fornecedor;
+
 struct cadProduto {
    int  codigo;
    char descricao[100];
    int  qtd;
    float precoCusto;
    float precoVenda;
-   } Produto;   
-   
+   } Produto;
+
 FILE *fp;
 /*Funções do Sistema*/
 void incluir (void);
@@ -39,60 +38,10 @@ void abrir(void);
 void listar(void);
 void ajuda(void);
 
-int main(void)
-{
-	setlocale(LC_ALL,"");
- char opcao[2], op;
- do{
-    do{
-       system("cls");
-       printf("\n\n\n\n\n\n\n");
-       printf("\t########################################################\n");
-       printf("\t#        					       #\n");
-       printf("\t#     Programa de Cadastro de Clientes e Produtos      #\n");
-       printf("\t#                                                      #\n");
-       printf("\t########################################################\n\n\n");
-       printf("\n Digite uma das opções\n\n");
-       printf("\n <I> - Incluir");
-       printf("\n <A> - Alterar");
-       printf("\n <E> - Excluir");
-       printf("\n <C> - Consultar");
-       printf("\n <L> - Listar");
-       printf("\n <H> - Ajuda");
-       printf("\n <S> - Sair");
-       printf("\n\n\n Opção:");
-       gets(opcao);
-       op=tolower(*opcao);
-    } while(!strchr("iaeclsh",op));
-       switch(op){/*D*/
-	  case 'i' : incluir(); break;
-	  case 'a' : alterar(); break;
-	  case 'e' : excluir(); break;
-	  case 'c' : consultar(); break;
-	  case 'l' : listar(); break;
-	  case 's' : exit(0);
-	  case 'h' : ajuda(); break;
-       }
- }while(1);
-}
-		    
-void ajuda(void) {
-	system("cls");
-	printf("\a\n\n\n\n\n\n\n");
-	printf("\t############################################################\n");
-	printf("\t#   Trabalho de Final de Semestre - Estrutura de Dados 1   #\n");
-	printf("\t#							   #\n");
-	printf("\t# Engenharia da Computação - Universidade Federal de Goiás #\n");
-	printf("\t#   						   	   #\n");
-	printf("\t#     Jonismar Morais // Mariana Casseta // Pedro Lopes    #\n");
-	printf("\t############################################################\n\n\n");
-	printf("\t\t\tTecle <ENTER> para voltar");
-	getch();
-}
 void abrir(char tipo[3])
 {
-     if((fp=fopen("C:\\Users\\user\\Documents\\ed1\\clientes.txt", tipo))==NULL)
-     {printf("\n O arquivo nao pode ser aberto!!\n");
+     if((fp=fopen("clientes.txt", tipo))==NULL){
+       printf("\n O arquivo nao pode ser aberto!!\n");
       getch();
       exit(1);
      }
@@ -291,4 +240,115 @@ void excluir(void){
 		  }
 	 }
    fclose(fp);
+}
+
+void ajuda(void) {
+	system("cls");
+	printf("\a\n\n\n\n\n\n\n");
+	printf("\t############################################################\n");
+	printf("\t#   Trabalho de Final de Semestre - Estrutura de Dados 1   #\n");
+	printf("\t#							   #\n");
+	printf("\t# Engenharia da Computação - Universidade Federal de Goiás #\n");
+	printf("\t#   						   	   #\n");
+	printf("\t#     Jonismar Morais // Mariana Casseta // Pedro Lopes    #\n");
+	printf("\t############################################################\n\n\n");
+	printf("\t\t\tTecle <ENTER> para voltar");
+	getch();
+}
+
+int main(){
+
+  int menu, menu1, menu2, menu3;
+  int m1, m2, m3;
+  char opcao[2], op;
+
+  printf("\n\t\t\tBEM VINDO AO PROGRAMA ....\t\n\n\n\n");
+  system("pause");
+  printf("\n\t Iniciando...\n\n\n\n");
+  system("pause");
+  system("cls");
+  printf("\tDigite onde deseja acessar...\n\n");
+  printf("1 - Área de Cadastros\n");
+  printf("2 - Financeiro\n");
+  printf("3 - Relatórios\n");
+  printf("4 - Sair");
+  printf("\n\n\t\t:");
+  scanf("%i", &menu);
+  fflush(stdin);
+
+
+  do{
+    switch (menu) {
+      case 1:
+        do{
+           do{
+              system("cls");
+              printf("\n\n\n\n\n\n\n");
+              printf("\t########################################################\n");
+              printf("\t#                                                      #\n");
+              printf("\t#     Programa de Cadastro de Clientes e Produtos      #\n");
+              printf("\t#                                                      #\n");
+              printf("\t########################################################\n\n\n");
+              printf("\n Digite uma das opções\n\n");
+              printf("\n <I> - Incluir");
+              printf("\n <A> - Alterar");
+              printf("\n <E> - Excluir");
+              printf("\n <C> - Consultar");
+              printf("\n <L> - Listar");
+              printf("\n <H> - Ajuda");
+              printf("\n <S> - Sair");
+              printf("\n\n\n Opção:");
+              gets(opcao);
+              op=tolower(*opcao);
+           } while(!strchr("iaeclsh",op));
+              switch(op){/*D*/
+          case 'i' : incluir(); break;
+          case 'a' : alterar(); break;
+          case 'e' : excluir(); break;
+          case 'c' : consultar(); break;
+          case 'l' : listar(); break;
+          case 's' : exit(0);
+          case 'h' : ajuda(); break;
+              }
+        }while(1);
+
+        break;
+      case 2:
+        do{
+          system("cls");
+          printf("\n*****************************FINANCEIRO*****************************\n\n");
+          printf("\tDigite onde deseja acessar...\n\n");
+          printf("\n1 - ");
+          printf("\n2 - ");
+          printf("\n3 - ");
+          printf("\n4 - Sair");
+          printf("\n\n\t\t:");
+          scanf("%i", &menu2);
+          //chamar função...
+        }while(menu2!=4);
+        break;
+      case 3:
+      do{
+        system("cls");
+        printf("\n*****************************RELATORIO*****************************\n\n");
+        printf("\tDigite onde deseja acessar...\n\n");
+        printf("\n1 - Relatório diário");
+        printf("\n2 - Relatório");
+        printf("\n3 - ");
+        printf("\n4 - Sair");
+        printf("\n\n\t\t:");
+        scanf("%i", &menu3);
+        //chamar função...
+      }while(menu3!=4);
+      break;
+      case 4:
+        return 0;
+        break;
+      default: printf("\nOpção INVALIDA, tente novamente....");
+    }
+  }while(menu!=4);
+
+
+
+  return 0;
 }

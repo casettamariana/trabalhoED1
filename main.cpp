@@ -5,6 +5,8 @@
 #include <ctype.h>
 #include <locale.h>
 
+
+
 typedef  struct cadProduto {
     int codigo;
     char descricao [ 100 ];
